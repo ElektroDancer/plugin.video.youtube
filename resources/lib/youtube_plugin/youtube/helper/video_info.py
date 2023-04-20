@@ -715,6 +715,7 @@ class VideoInfo(object):
         return streams
 
     def _method_get_video_info(self, video_id):
+
         headers = self.MOBILE_HEADERS.copy()
 
         params = None
@@ -724,20 +725,33 @@ class VideoInfo(object):
             params = {
                 'key': self._api_key
             }
-        video_info_url = 'https://youtubei.googleapis.com/youtubei/v1/player'
-        # payload = {'videoId': video_id,
-        #            'context': {'client': {'clientVersion': '1.20210909.07.00', 'gl': self.region,
-        #                                   'clientName': 'WEB_CREATOR', 'hl': self.language}}}
+        
+        video_info_url = 'https://www.youtube.com/youtubei/v1/player'
 
-        # payload = {'videoId': video_id,
-        #            'context': {'client': {'clientVersion': '16.05', 'gl': self.region,
-        #                                   'clientName': 'ANDROID', 'clientScreen': 'EMBED',
-        #                                   'hl': self.language}}}
-
-        payload = {'videoId': video_id,
-                   'context': {'client': {'clientVersion': '18.05.40', 'gl': self.region,
-                                          'clientName': 'ANDROID', 'hl': self.language}},
-                   'thirdParty': {'embedUrl': 'https://google.com'}
+        payload = {
+            'contentCheckOk': True,
+            'videoId': video_id,
+            'context': {
+                'client': {
+                    'hl': 'de',
+                    'gl': 'DE',
+                    'clientName': 'ANDROID_EMBEDDED_PLAYER',
+                    'clientVersion': '18.14.41',
+                    'androidSdkVersion': 31,
+                    'osName': 'Android',
+                    'osVersion': '12',
+                    'platform': 'MOBILE',
+                }
+            },
+            'racyCheckOk': True,
+            'user': {
+                'lockedSafetyMode': False
+            },
+            'playbackContext': {
+                'contentPlaybackContext': {
+                    'html5Preference': 'HTML5_PREF_WANTS'
+                }
+            }
         }
 
         player_response = {}
