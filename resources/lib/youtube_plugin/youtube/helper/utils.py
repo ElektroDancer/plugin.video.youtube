@@ -454,6 +454,7 @@ def update_video_infos(provider, context, video_id_dict, playlist_item_id_dict=N
         if len(context_menu) > 0:
             video_item.set_context_menu(context_menu, replace=replace_context_menu)
 
+        yt_context_menu.append_play_with_invidious(context_menu, provider, context, video_id)
 
 def update_play_info(provider, context, video_id, video_item, video_stream, use_play_data=True):
     settings = context.get_settings()

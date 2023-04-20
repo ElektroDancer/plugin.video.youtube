@@ -215,3 +215,7 @@ def append_play_ask_for_quality(context_menu, provider, context, video_id):
                          'RunPlugin(%s)' % context.create_uri(['play'],
                                                               {'video_id': video_id,
                                                                'ask_for_quality': '1'})))
+
+
+def append_play_with_invidious(context_menu, provider, context, video_id):
+    context_menu.append(("Play with Invidious", 'PlayMedia(plugin://plugin.video.invidious/?action=video&videoId=%s)' % video_id))
